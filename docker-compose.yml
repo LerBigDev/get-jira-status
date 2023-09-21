@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  get_status:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./output:/app/output
+    env_file:
+      - .env
