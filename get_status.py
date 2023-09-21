@@ -7,7 +7,7 @@ config = dotenv_values(".env")
 
 def get_status():
     api_key = config['JIRA_API_KEY']
-    api_url = config['JIRA_API']
+    jira_workspace = config['JIRA_WORKSPACE']
     updated_at = config['UPDATED_AT']
     users = config['JIRA_USERS']
     users_list = users.split(',')
@@ -24,7 +24,8 @@ def get_status():
         "fields": "summary,status,assignee"
     }
 
-    response = requests.get(api_url, headers=headers, params=params)
+    response = requests.get(
+        f"{jira_workspace}/rest/api/2/search", headers=headers, params=params)
     data = response.json()
 
     f = open(os.path.join("output", "output.html"), "w")
@@ -41,9 +42,8 @@ def get_status():
         summary = issue["fields"]["summary"]
         status = issue["fields"]["status"]["name"]
         assignee = issue["fields"]["assignee"]["displayName"]
-        url = issue["self"]
         f.write(
-            f"<tr><td><a href='{url}'>{id}</a></td><td>{summary}</td><td>{assignee}</td><td>{status}</td></tr>\n")
+            f"<tr><td><a href='{jira_workspace}/browse/{id}'>{id}</a></td><td>{summary}</td><td>{assignee}</td><td>{status}</td></tr>\n")
 
     f.write(f"</body>\n")
 
