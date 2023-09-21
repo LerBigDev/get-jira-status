@@ -42,8 +42,9 @@ def get_status():
         summary = issue["fields"]["summary"]
         status = issue["fields"]["status"]["name"]
         assignee = issue["fields"]["assignee"]["displayName"]
+        url = f"{jira_workspace}/browse/{id}"
         f.write(
-            f"<tr><td><a href='{jira_workspace}/browse/{id}'>{id}</a></td><td>{summary}</td><td>{assignee}</td><td>{status}</td></tr>\n")
+            f"<tr><td><a href='{url}'>{id}</a></td><td>{summary}</td><td>{assignee}</td><td>{status}</td></tr>\n")
 
     f.write(f"</body>\n")
 
