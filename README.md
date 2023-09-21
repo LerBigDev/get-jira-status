@@ -12,7 +12,7 @@ Set `.env` file with the following variables:
 
 ```env
 JIRA_API_KEY=<JIRA_API_TOKEN>
-JIRA_API=https://medicallyhomejira.atlassian.net/rest/api/2/search
+JIRA_WORKSPACE=https://medicallyhomejira.atlassian.net
 JIRA_USERS=John Smith,Adam Coal,Jeremy Island # USE YOUR TEAM'S JIRA USERS
 UPDATED_AT=-5d # USE YOUR TIMEFRAME. SO IT WILL COLLECT TICKETS WHICH STATUS UPDATED IN THE LAST 5 DAYS
 ```
